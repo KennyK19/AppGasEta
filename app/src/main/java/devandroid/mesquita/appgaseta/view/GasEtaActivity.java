@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import devandroid.mesquita.appgaseta.R;
+import devandroid.mesquita.appgaseta.controller.CombustivelController;
 import devandroid.mesquita.appgaseta.model.Combustivel;
 import devandroid.mesquita.appgaseta.util.UtilGasEta;
 
@@ -19,6 +20,7 @@ public class GasEtaActivity extends AppCompatActivity {
 
     Combustivel combustivelGasolina;
     Combustivel combustivelEtanol;
+    CombustivelController controller;
 
     EditText editGasolina;
     EditText editEtanol;
@@ -38,6 +40,8 @@ public class GasEtaActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gaseta);
+
+        controller = new CombustivelController(GasEtaActivity.this);
 
         editGasolina = findViewById(R.id.editGasolina);
         editEtanol = findViewById(R.id.editEtanol);
@@ -75,10 +79,13 @@ public class GasEtaActivity extends AppCompatActivity {
 
                 tvResultado.setText(recomendacao);
 
+                btnSalvar.setEnabled(true);
+
                 }else{
                     Toast.makeText(GasEtaActivity.this,
                             "Digite os dados corretamente, por favor !",
                             Toast.LENGTH_SHORT).show();
+                    btnSalvar.setEnabled(false);
                 }
             }
         });
@@ -90,6 +97,10 @@ public class GasEtaActivity extends AppCompatActivity {
                 editGasolina.setText("");
                 editEtanol.setText("");
                 tvResultado.setText("");
+
+                btnSalvar.setEnabled(false);
+
+                controller.limpar();
             }
         });
 
@@ -110,6 +121,10 @@ public class GasEtaActivity extends AppCompatActivity {
 
             combustivelGasolina.setRecomendacao(UtilGasEta.calcularMelhorOpcao(precoGasolina,precoEtanol));
             combustivelEtanol.setRecomendacao(UtilGasEta.calcularMelhorOpcao(precoGasolina,precoEtanol));
+
+
+            controller.salvar(combustivelGasolina);
+            controller.salvar(combustivelEtanol);
 
             int parada = 0;
 
