@@ -12,9 +12,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import devandroid.mesquita.appgaseta.R;
+import devandroid.mesquita.appgaseta.model.Combustivel;
 import devandroid.mesquita.appgaseta.util.UtilGasEta;
 
 public class GasEtaActivity extends AppCompatActivity {
+
+    Combustivel combustivelGasolina;
+    Combustivel combustivelEtanol;
 
     EditText editGasolina;
     EditText editEtanol;
@@ -76,10 +80,6 @@ public class GasEtaActivity extends AppCompatActivity {
                             "Digite os dados corretamente, por favor !",
                             Toast.LENGTH_SHORT).show();
                 }
-
-
-
-
             }
         });
 
@@ -96,6 +96,22 @@ public class GasEtaActivity extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+            //TODO: Desabilitar o botão salvar.
+
+            combustivelGasolina = new Combustivel();
+            combustivelEtanol = new Combustivel();
+
+            combustivelGasolina.setNomeDoCombustivel("Gasolina");
+            combustivelGasolina.setPrecoDoCombustivel(precoGasolina);
+
+            combustivelEtanol.setNomeDoCombustivel("Etanol");
+            combustivelEtanol.setPrecoDoCombustivel(precoEtanol);
+
+            combustivelGasolina.setRecomendacao(UtilGasEta.calcularMelhorOpcao(precoGasolina,precoEtanol));
+            combustivelEtanol.setRecomendacao(UtilGasEta.calcularMelhorOpcao(precoGasolina,precoEtanol));
+
+            int parada = 0;
 
             }
         });
