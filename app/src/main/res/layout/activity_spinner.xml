@@ -31,37 +31,37 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editPrimeiroNome"
+                android:id="@+id/editGasolina"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:hint="@string/txt_firstName"
+                android:hint="@string/txt_hint_edit_gasolina"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editSobreNomeAluno"
+                android:id="@+id/editEtanol"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:hint="@string/txt_lastName"
+                android:hint="@string/txt_hint_edit_etanol"
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editNomeCurso"
+                android:id="@+id/tvResultado"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:ems="10"
-                android:hint="@string/txt_course"
+                android:hint="@string/txt_resultado"
                 android:inputType="textPersonName" />
 
             <EditText
@@ -108,7 +108,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/txt_clean"/>
+                    android:text="@string/txt_button_limpar"/>
 
                 <Button
                     android:id="@+id/btnSalvar"
@@ -117,7 +117,7 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/txt_save"/>
+                    android:text="@string/txt_button_salvar"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -127,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:text="@string/txt_finish"
+                android:text="@string/txt_button_calcular"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"/>
 
