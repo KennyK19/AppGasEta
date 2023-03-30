@@ -1,5 +1,6 @@
 package devandroid.mesquita.appgaseta.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,10 +8,15 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import devandroid.mesquita.appgaseta.model.Combustivel;
+
 public class GasEtaDB extends SQLiteOpenHelper {
 
-    public static final String DB_NAME = "gaseta.db";
-    public static final int  DB_VERSION = 1;
+    private static final String DB_NAME = "gaseta.db";
+    private static final int  DB_VERSION = 1;
 
     Cursor cursor;
 
@@ -27,7 +33,7 @@ public class GasEtaDB extends SQLiteOpenHelper {
 
         //QUERY SQL para criar uma tabela
         String sqlTabelaCombustivel
-                = "CREATE TABLE Combutivel (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                = "CREATE TABLE Combustivel (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "nomeDoCombustivel TEXT, " +
                 "precoDoCombustivel REAL, " +
                 "recomendacao TEXT)";
@@ -39,4 +45,44 @@ public class GasEtaDB extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
+
+    public void salvarObjeto(String tabela, ContentValues dados){
+        db.insert(tabela, null,dados);
+    }
+
+    public List<Combustivel> listarDados(){
+
+        List<Combustivel> lista = new ArrayList<>();
+
+        //Representa um regristro que está salvo na tabela
+        //Combustivel do Banco de dados da aplicação
+        Combustivel registro;
+
+        String querySQL = "SELECT * FROM Combustivel";
+
+        cursor = db.rawQuery(querySQL,null);
+
+        if (cursor.moveToFirst()) {
+            //True
+
+            do{
+                registro = new Combustivel();
+
+                registro.setId(cursor.getInt(0));
+                registro.setNomeDoCombustivel(cursor.getString(1));
+                registro.setPrecoDoCombustivel(cursor.getDouble(2));
+                registro.setRecomendacao(cursor.getString(3));
+
+                lista.add(registro);
+
+            }while(cursor.moveToNext());
+
+        }else{
+
+        }
+
+
+        return lista;
+    }
+
 }
