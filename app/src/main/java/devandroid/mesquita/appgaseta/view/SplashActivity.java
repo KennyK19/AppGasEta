@@ -18,12 +18,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        cumutarTelaSplash();
+        comutarTelaSplash();
 
 
     }
 
-    private void cumutarTelaSplash() {
+    private void comutarTelaSplash() {
 
         new Handler().postDelayed(new Runnable() {
             @Override

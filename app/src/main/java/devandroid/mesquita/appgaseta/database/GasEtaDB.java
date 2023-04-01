@@ -64,7 +64,6 @@ public class GasEtaDB extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             //True
-
             do{
                 registro = new Combustivel();
 
@@ -81,7 +80,6 @@ public class GasEtaDB extends SQLiteOpenHelper {
 
         }
 
-
         return lista;
     }
 
@@ -94,8 +92,13 @@ public class GasEtaDB extends SQLiteOpenHelper {
 
         db.update(tabela,dados,"id=?",new String[]{Integer.toString(id)});
 
+    }
 
+    public void deletarObjeto(String tabela, int id){
+        // ID do registro a ser alterado (PK)
+        // delete from TABLE WHERE id=?
 
+        db.delete(tabela,"id=?",new String[]{Integer.toString(id)});
     }
 
 }
